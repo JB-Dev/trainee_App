@@ -9,6 +9,8 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
+
+import NameItem from "../components/nameItem";
 import * as Animatable from "react-native-animatable";
 
 export default function AddData() {
@@ -33,6 +35,13 @@ export default function AddData() {
         />
         <Button title="ADD" onPress={addNameHandler} />
       </Animatable.View>
+      <View style={styles.listData}>
+        <FlatList
+          keyExtractor={(item, index) => item.id}
+          data={name}
+          renderItem={(itemData) => <NameItem title={itemData.item.value} />}
+        />
+      </View>
     </SafeAreaView>
   );
 }
@@ -56,9 +65,5 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     backgroundColor: "#000",
-  },
-  listText: {
-    color: "#FFF",
-    margin: 5,
   },
 });
