@@ -1,24 +1,12 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Button,
-  SafeAreaView,
-} from "react-native";
-
+import React from "react";
+import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import { baseStyles } from "../styles/baseStyle";
 
-export default function Login() {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+export default function SignUp() {
   return (
     <View style={baseStyles.screen}>
       <View style={styles.header}>
-        <Text color="#fff" style={styles.headerText}>
-          Welcome!
-        </Text>
+        <Text style={styles.headerText}>Enter Details</Text>
       </View>
       <View style={styles.credential}>
         <Text fontSize="20" style={baseStyles.headerUsername}>
@@ -46,30 +34,13 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: "#000",
-  },
   header: {
-    flex: 1,
-    margin: 10,
-    color: "#000",
+    flex: 2,
+    marginTop: 10,
+    backgroundColor: "#fff",
   },
   headerText: {
-    fontSize: 40,
-    color: "#fff",
-    marginTop: "20%",
-  },
-  credential: {
-    flex: 2,
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
-    backgroundColor: "#FFF",
-  },
-  signUp: {
-    fontSize: 18,
-    alignSelf: "flex-end",
-    marginTop: 10,
-    marginEnd: "10%",
+    fontSize: 30,
+    color: "#000",
   },
 });

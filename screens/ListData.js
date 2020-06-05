@@ -5,25 +5,32 @@ import {
   Button,
   TextInput,
   StyleSheet,
-  Text,
-  ScrollView,
   FlatList,
 } from "react-native";
 
 import NameItem from "../components/nameItem";
 import * as Animatable from "react-native-animatable";
+import Navigator from "../navigation/navigator";
 
 export default function AddData() {
   const [enterName, setEnterName] = useState("");
   const [name, setName] = useState([]);
+
   const nameInputHandler = (enterName) => {
     setEnterName(enterName);
   };
+
   const addNameHandler = () => {
     setName((currentName) => [
       ...currentName,
       { key: Math.random().toString, value: enterName },
     ]);
+  };
+
+  const removeNameHandler = (NameId) => {
+    setName((currentName) => {
+      return currentName.filter((n) => n.id !== NameId);
+    });
   };
   return (
     <SafeAreaView style={styles.screen}>
@@ -39,7 +46,13 @@ export default function AddData() {
         <FlatList
           keyExtractor={(item, index) => item.id}
           data={name}
-          renderItem={(itemData) => <NameItem title={itemData.item.value} />}
+          renderItem={(itemData) => (
+            <NameItem
+              id={itemData.item.id}
+              onDelete={removeNameHandler}
+              title={itemData.item.value}
+            />
+          )}
         />
       </View>
     </SafeAreaView>
@@ -54,6 +67,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     flexDirection: "row",
+    margin: 10,
     justifyContent: "space-between",
   },
   listData: {
