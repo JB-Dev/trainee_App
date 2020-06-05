@@ -1,1 +1,1 @@
-# trainee_App
+# traineeApp
