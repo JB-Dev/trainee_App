@@ -9,8 +9,9 @@ import {
 } from "react-native";
 
 import { baseStyles } from "../styles/baseStyle";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function Login() {
+const Login = (props)=>  {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -37,10 +38,10 @@ export default function Login() {
           headerText="enter password"
         />
         <View style={baseStyles.submit}>
-          <Button title="Login" color="#fff" style={styles.submit} />
+          <Button title="Login" color="#fff" style={baseStyles.submit} />
         </View>
-        <Text style={styles.signUp}>New User?Sign Up</Text>
-      </View>
+        <Text style={styles.signUp} onPress={()=>props.navigation.navigate('SignUpScreen')}>New User?Sign Up</Text>
+        </View>
     </View>
   );
 }
@@ -60,16 +61,16 @@ const styles = StyleSheet.create({
     color: "#fff",
     marginTop: "20%",
   },
-  credential: {
-    flex: 2,
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
-    backgroundColor: "#FFF",
-  },
   signUp: {
     fontSize: 18,
     alignSelf: "flex-end",
     marginTop: 10,
     marginEnd: "10%",
+  },credential:{
+    flex: 3,
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    backgroundColor: "#FFF",
   },
 });
+export default Login;

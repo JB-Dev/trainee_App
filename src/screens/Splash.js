@@ -1,7 +1,6 @@
 import React from "react";
-import { SafeAreaView, View, Text, StyleSheet, Button } from "react-native";
+import { SafeAreaView, View, Text, StyleSheet,TouchableOpacity} from "react-native";
 import * as Animatable from "react-native-animatable";
-import { NavigationContainer } from "@react-navigation/native";
 
 const Splash = (props) => {
   console.log("app");
@@ -12,12 +11,13 @@ const Splash = (props) => {
         <Text style={styles.headerTextSmall}>Learn Ones Use Everywhere</Text>
       </Animatable.View>
       <Animatable.View animation="bounceInUp" style={styles.footer}>
-        <Button
-          style={styles.button}
-          onPress={() => navigation.navigate("App")}
+      <TouchableOpacity onPress ={()=>props.navigation.navigate('LoginScreen')} style={styles.footerButton}>
+    <Text
           color="#000"
-          title="Get Start"
-        />
+          style={styles.button}>Get Start
+    </Text>
+ 
+        </TouchableOpacity>
       </Animatable.View>
     </SafeAreaView>
   );
@@ -52,8 +52,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-end",
   },
+  footerButton:{
+    borderRadius:30,
+    width:"30%",
+    height:50,
+    backgroundColor:'#fff',
+    alignSelf:"flex-end",
+    margin:10,
+  },
   button: {
-    backgroundColor: "#fff",
+    color:"#000",
+    justifyContent:"center",
+    margin:10,
+    alignSelf:"center",
+    fontSize:20
   },
 });
 export default Splash;
