@@ -6,14 +6,30 @@ import {
   View,
   Button,
   SafeAreaView,
+  Alert,
 } from "react-native";
 
 import { baseStyles } from "../styles/baseStyle";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const Login = (props)=>  {
+const Login = (props) => {
+  const { navigation } = props;
+  const getUser = navigation.getParam("userValue");
+  const getPass = navigation.getParam("passValue");
+  console.log(getUser+getPass);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+
+  function isLogin() {
+    if (getUser == userName && getPass == password) {
+      props.navigation.navigate("HomeScreen", {
+        email: getUser,
+        pass: getPass,
+      })
+    } else {
+      Alert.alert("Credential Not Matched");
+    }
+  }
   return (
     <View style={baseStyles.screen}>
       <View style={styles.header}>
@@ -26,25 +42,38 @@ const Login = (props)=>  {
           User Name
         </Text>
         <TextInput
+          maxLength={20}
           style={baseStyles.credentialText}
+          onChangeText={(userName) => setUserName(userName)}
           headerText="enter username"
         />
         <Text fontSize="20" style={baseStyles.headerUsername}>
           Password
         </Text>
         <TextInput
+          maxLength={20}
           style={baseStyles.credentialText}
-          secureTextEntry={true}
+          onChangeText={(password) => setPassword(password)}
           headerText="enter password"
         />
         <View style={baseStyles.submit}>
-          <Button title="Login" color="#fff" style={baseStyles.submit} />
+          <Button
+            title="Login"
+            color="#fff"
+            style={baseStyles.submit}
+            onPress={() => isLogin()}
+          />
         </View>
-        <Text style={styles.signUp} onPress={()=>props.navigation.navigate('SignUpScreen')}>New User?Sign Up</Text>
-        </View>
+        <Text
+          style={styles.signUp}
+          onPress={() => props.navigation.navigate("SignUpScreen")}
+        >
+          New User?Sign Up
+        </Text>
+      </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   screen: {
@@ -66,7 +95,8 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     marginTop: 10,
     marginEnd: "10%",
-  },credential:{
+  },
+  credential: {
     flex: 3,
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,

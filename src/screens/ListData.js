@@ -36,7 +36,8 @@ export default function AddData() {
     <SafeAreaView style={styles.screen}>
       <Animatable.View animation="fadeInUp" style={styles.header}>
         <TextInput
-          placeholder="Enter Name"
+         style= {styles.textInput}
+          placeholder="Enter Component"
           onChangeText={nameInputHandler}
           value={enterName}
         />
@@ -79,5 +80,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     backgroundColor: "#000",
-  },
+  },textInput:{
+    fontSize:20
+  }
 });

@@ -1,5 +1,11 @@
 import React from "react";
-import { SafeAreaView, View, Text, StyleSheet,TouchableOpacity} from "react-native";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import * as Animatable from "react-native-animatable";
 
 const Splash = (props) => {
@@ -7,16 +13,19 @@ const Splash = (props) => {
   return (
     <SafeAreaView style={styles.screen}>
       <Animatable.View animation="bounceIn" style={styles.header}>
-        <Text style={styles.headerText}>Lets Start React Learning</Text>
-        <Text style={styles.headerTextSmall}>Learn Ones Use Everywhere</Text>
+        <Text style={styles.headerText}> React Native</Text>
+        <Text style={styles.headerTextSmall}>Learn once, write anywhere.
+
+</Text>
       </Animatable.View>
-      <Animatable.View animation="bounceInUp" style={styles.footer}>
-      <TouchableOpacity onPress ={()=>props.navigation.navigate('LoginScreen')} style={styles.footerButton}>
-    <Text
-          color="#000"
-          style={styles.button}>Get Start
-    </Text>
- 
+      <Animatable.View animation="bounceInUp" margin={20}>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate("LoginScreen")}
+          style={styles.footerButton}
+        >
+          <Text color="#fff" style={styles.button}>
+            Get Start
+          </Text>
         </TouchableOpacity>
       </Animatable.View>
     </SafeAreaView>
@@ -31,6 +40,7 @@ const styles = StyleSheet.create({
   headerText: {
     padding: 10,
     fontSize: 40,
+    fontWeight: 'bold',
     justifyContent: "flex-start",
     alignItems: "flex-start",
     marginTop: 20,
@@ -38,6 +48,7 @@ const styles = StyleSheet.create({
   headerTextSmall: {
     padding: 10,
     fontSize: 20,
+    marginStart:10,
     justifyContent: "flex-start",
     alignItems: "flex-start",
   },
@@ -48,24 +59,24 @@ const styles = StyleSheet.create({
     flex: 1,
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
-    backgroundColor: "#000",
     alignItems: "center",
     justifyContent: "flex-end",
   },
-  footerButton:{
-    borderRadius:30,
-    width:"30%",
-    height:50,
-    backgroundColor:'#fff',
-    alignSelf:"flex-end",
-    margin:10,
+  footerButton: {
+    borderRadius: 30,
+    width: "100%",
+    height: 50,
+    margin:20,
+    backgroundColor: "#000",
+    alignSelf: "center",
+    justifyContent:"center"
   },
   button: {
-    color:"#000",
-    justifyContent:"center",
+    color: "#fff",
+    justifyContent: "center",
     margin:10,
-    alignSelf:"center",
-    fontSize:20
+    alignSelf: "center",
+    fontSize: 20,
   },
 });
 export default Splash;

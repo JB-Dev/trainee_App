@@ -1,11 +1,23 @@
-import React from "react";
-import { View, Text, StyleSheet ,TextInput, Button } from "react-native";
+import React, { useState, isValidElement } from "react";
+import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { baseStyles } from "../styles/baseStyle";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const SignUp = (props) => {
+  const [user, setUser] = useState("");
+  const [pass, setPass] = useState("");
+
+  function isVerify(userName, passWord) {
+    if (userName == "" || passWord == "") {
+      Alert.alert("Enter Valid Details");
+    } else {
+      props.navigation.navigate("LoginScreen", { userValue: userName, passValue: passWord });
+    }
+  }
+
   return (
-    <View style={baseStyles.screen}>
+    <SafeAreaView style={baseStyles.screen}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Enter Details</Text>
       </View>
@@ -13,35 +25,35 @@ const SignUp = (props) => {
         <Text fontSize="20" style={baseStyles.headerUsername}>
           Full Name
         </Text>
-        <TextInput
-          style={baseStyles.credentialText}
-          headerText="enter username"
-        />
+        <TextInput style={baseStyles.credentialText} />
         <Text fontSize="20" style={baseStyles.headerUsername}>
           Email
         </Text>
         <TextInput
           style={baseStyles.credentialText}
-          headerText="enter username"
+          onChangeText={(user) => setUser(user)}
         />
         <Text fontSize="20" style={baseStyles.headerUsername}>
           Password
         </Text>
         <TextInput
           style={baseStyles.credentialText}
-          headerText="enter username"
+          onChangeText={(pass) => setPass(pass)}
         />
         <View style={baseStyles.submit}>
-        <Button color="#fff" title="Ok"/>
+          <Button
+            color="#fff"
+            title="Ok"
+            onPress={() => isVerify(user, pass)}
+          />
         </View>
-        <TouchableOpacity onPress={()=>props.navigation.goBack()}>
-        <Text style={styles.signIn}>Already Account?Sign In</Text>
+        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+          <Text style={styles.signIn}>Already Account?Sign In</Text>
         </TouchableOpacity>
-  </View>
-  </View>
+      </View>
+    </SafeAreaView>
   );
 };
-
 const styles = StyleSheet.create({
   header: {
     flex: 1,
@@ -54,12 +66,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     margin: 10,
   },
-  credential:{
+  credential: {
     flex: 4,
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
     backgroundColor: "#FFF",
-  }, signIn: {
+  },
+  signIn: {
     fontSize: 18,
     alignSelf: "flex-end",
     marginTop: 10,
