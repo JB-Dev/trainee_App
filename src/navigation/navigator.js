@@ -6,24 +6,27 @@ import SignUp from "../screens/SignUp";
 import Splash from "../screens/Splash";
 import Home from "../screens/Home";
 
-const Navigator = createStackNavigator({
-  SplashScreen : {
-    screen: Splash
+const Navigator = createStackNavigator(
+  {
+    SplashScreen: {
+      screen: Splash,
+    },
+    LoginScreen: {
+      screen: Login,
+    },
+    SignUpScreen: {
+      screen: SignUp,
+    },
+    ListDataScreen: {
+      screen: ListData,
+    },
+    HomeScreen: {
+      screen: Home,
+    },
   },
-  LoginScreen: {
-    screen: Login,
-  },
-  SignUpScreen: {
-    screen: SignUp },
-  ListDataScreen: {
-    screen: ListData
-  },
-  HomeScreen: {
-    screen : Home,
-  },
-},
-{
-  headerMode: "none",
-  initialRouteName: "SplashScreen"
-});
+  {
+    headerMode: "none",
+    initialRouteName: "ListDataScreen",
+  }
+);
 export default createAppContainer(Navigator);

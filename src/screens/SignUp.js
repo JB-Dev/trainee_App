@@ -3,19 +3,32 @@ import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { baseStyles } from "../styles/baseStyle";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-community/async-storage";
 
 const SignUp = (props) => {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
-
+  let obj;
   function isVerify(userName, passWord) {
     if (userName == "" || passWord == "") {
       Alert.alert("Enter Valid Details");
     } else {
-      props.navigation.navigate("LoginScreen", { userValue: userName, passValue: passWord });
+      storeData(data);
+      props.navigation.navigate("LoginScreen");
     }
   }
-
+  let data = {
+    userId: user,
+    userPass: pass,
+  };
+  const storeData = async (data) => {
+    try {
+      const jsonValue = JSON.stringify(data);
+      await AsyncStorage.setItem("@storage_Key", jsonValue);
+    } catch (e) {
+      // saving error
+    }
+  };
   return (
     <SafeAreaView style={baseStyles.screen}>
       <View style={styles.header}>
@@ -29,6 +42,7 @@ const SignUp = (props) => {
         <Text fontSize="20" style={baseStyles.headerUsername}>
           Email
         </Text>
+
         <TextInput
           style={baseStyles.credentialText}
           onChangeText={(user) => setUser(user)}

@@ -9,27 +9,32 @@ import {
   Alert,
 } from "react-native";
 
+import AsyncStorage from "@react-native-community/async-storage";
 import { baseStyles } from "../styles/baseStyle";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const Login = (props) => {
   const { navigation } = props;
-  const getUser = navigation.getParam("userValue");
-  const getPass = navigation.getParam("passValue");
-  console.log(getUser+getPass);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  function isLogin() {
-    if (getUser == userName && getPass == password) {
-      props.navigation.navigate("HomeScreen", {
-        email: getUser,
-        pass: getPass,
-      })
-    } else {
-      Alert.alert("Credential Not Matched");
+  getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("@storage_Key");
+      if (jsonValue != null) {
+        let parsed = JSON.parse(jsonValue);
+        if (userName == parsed.userId && password == parsed.userPass) {
+          props.navigation.navigate("HomeScreen");
+        } else {
+          alert("credential not match!");
+        }
+      } else {
+        alert("null");
+      }
+    } catch (e) {
+      alert(e);
     }
-  }
+  };
   return (
     <View style={baseStyles.screen}>
       <View style={styles.header}>
@@ -61,7 +66,7 @@ const Login = (props) => {
             title="Login"
             color="#fff"
             style={baseStyles.submit}
-            onPress={() => isLogin()}
+            onPress={() => getData()}
           />
         </View>
         <Text

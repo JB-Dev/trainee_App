@@ -5,6 +5,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  StatusBar,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 

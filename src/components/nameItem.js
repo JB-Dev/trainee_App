@@ -3,25 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 
 const NameItem = (props) => {
   return (
-    <TouchableOpacity
-      onPress={() =>
-        Alert.alert(
-          "Alert",
-          "Are you sure?",
-          [
-            {
-              text: "Cancel",
-              onPress: () => console.log("Cancel"),
-            },
-            {
-              text: "Delete",
-              onPress: () => props.onDelete.bind(this, props.id),
-            },
-          ],
-          { cancelable: true }
-        )
-      }
-    >
+    <TouchableOpacity onPress={() => props.onDelete.bind(props.id)}>
       <View>
         <Text style={styles.listText}>{props.title}</Text>
       </View>

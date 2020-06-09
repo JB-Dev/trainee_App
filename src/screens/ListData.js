@@ -11,6 +11,7 @@ import {
 import NameItem from "../components/nameItem";
 import * as Animatable from "react-native-animatable";
 import Navigator from "../navigation/navigator";
+import { log } from "react-native-reanimated";
 
 export default function AddData() {
   const [enterName, setEnterName] = useState("");
@@ -36,7 +37,7 @@ export default function AddData() {
     <SafeAreaView style={styles.screen}>
       <Animatable.View animation="fadeInUp" style={styles.header}>
         <TextInput
-         style= {styles.textInput}
+          style={styles.textInput}
           placeholder="Enter Component"
           onChangeText={nameInputHandler}
           value={enterName}
@@ -50,7 +51,7 @@ export default function AddData() {
           renderItem={(itemData) => (
             <NameItem
               id={itemData.item.id}
-              onDelete={removeNameHandler}
+              onPress={removeNameHandler(itemData.id)}
               title={itemData.item.value}
             />
           )}
@@ -80,7 +81,8 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     backgroundColor: "#000",
-  },textInput:{
-    fontSize:20
-  }
+  },
+  textInput: {
+    fontSize: 20,
+  },
 });
