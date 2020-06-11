@@ -10,8 +10,6 @@ import {
 
 import NameItem from "../components/nameItem";
 import * as Animatable from "react-native-animatable";
-import Navigator from "../navigation/navigator";
-import { log } from "react-native-reanimated";
 
 export default function AddData() {
   const [enterName, setEnterName] = useState("");

@@ -24,7 +24,7 @@ const Login = (props) => {
       if (jsonValue != null) {
         let parsed = JSON.parse(jsonValue);
         if (userName == parsed.userId && password == parsed.userPass) {
-          props.navigation.navigate("HomeScreen");
+          props.navigation.navigate("BottomTabNavigator");
         } else {
           alert("credential not match!");
         }
@@ -35,6 +35,7 @@ const Login = (props) => {
       alert(e);
     }
   };
+
   return (
     <View style={baseStyles.screen}>
       <View style={styles.header}>
@@ -48,6 +49,7 @@ const Login = (props) => {
         </Text>
         <TextInput
           maxLength={20}
+          returnKeyType="next"
           style={baseStyles.credentialText}
           onChangeText={(userName) => setUserName(userName)}
           headerText="enter username"
@@ -57,6 +59,7 @@ const Login = (props) => {
         </Text>
         <TextInput
           maxLength={20}
+          returnKeyType="next"
           style={baseStyles.credentialText}
           onChangeText={(password) => setPassword(password)}
           headerText="enter password"
