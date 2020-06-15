@@ -19,7 +19,7 @@ export const baseStyles = StyleSheet.create({
     fontSize: 20,
     marginStart: "10%",
     marginTop: 40,
-    marginBottom: 20, 
+    marginBottom: 20,
   },
   credentialText: {
     color: "#fff",

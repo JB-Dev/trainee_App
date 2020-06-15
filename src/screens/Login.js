@@ -9,9 +9,11 @@ import {
   Alert,
 } from "react-native";
 
+import constants from "../constants/const";
 import AsyncStorage from "@react-native-community/async-storage";
 import { baseStyles } from "../styles/baseStyle";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { setLoginState } from "../store/action/setLoginState";
 
 const Login = (props) => {
   const { navigation } = props;
@@ -25,12 +27,21 @@ const Login = (props) => {
         let parsed = JSON.parse(jsonValue);
         if (userName == parsed.userId && password == parsed.userPass) {
           props.navigation.navigate("BottomTabNavigator");
+          setLoginState(true);
+          setUserLogin("true");
         } else {
           alert("credential not match!");
         }
       } else {
         alert("null");
       }
+    } catch (e) {
+      alert(e);
+    }
+  };
+  const setUserLogin = async (value) => {
+    try {
+      await AsyncStorage.setItem(constants.GET_LOGIN, value);
     } catch (e) {
       alert(e);
     }
@@ -64,14 +75,12 @@ const Login = (props) => {
           onChangeText={(password) => setPassword(password)}
           headerText="enter password"
         />
-        <View style={baseStyles.submit}>
-          <Button
-            title="Login"
-            color="#fff"
-            style={baseStyles.submit}
-            onPress={() => getData()}
-          />
-        </View>
+        <TouchableOpacity
+          style={{ ...baseStyles.submit, marginTop: 20 }}
+          onPress={() => getData()}
+        >
+          <Text style={styles.login}>Login</Text>
+        </TouchableOpacity>
         <Text
           style={styles.signUp}
           onPress={() => props.navigation.navigate("SignUpScreen")}
@@ -109,6 +118,11 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
     backgroundColor: "#FFF",
+  },
+  login: {
+    color: "#fff",
+    height: 40,
+    alignSelf: "center",
   },
 });
 export default Login;

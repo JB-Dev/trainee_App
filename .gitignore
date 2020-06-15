@@ -73,10 +73,10 @@ android/gradlew*
 android/gradlew.bat
 
 ios/Podfile.lock
-ios/alphaclap-tvOS/Info.plist
-ios/alphaclap-tvOSTests/Info.plist
-ios/alphaclap.xcodeproj/xcshareddata/xcschemes/alphaclap-tvOS.xcscheme
-ios/alphaclap.xcodeproj/xcshareddata/xcschemes/alphaclap.xcscheme
-ios/alphaclap.xcworkspace/contents.xcworkspacedata
-ios/alphaclap.xcworkspace/
+ios/newProject-tvOS/Info.plist
+ios/newProject-tvOSTests/Info.plist
+ios/newProject.xcodeproj/xcshareddata/xcschemes/alphaclap-tvOS.xcscheme
+ios/newProject.xcodeproj/xcshareddata/xcschemes/alphaclap.xcscheme
+ios/newProject.xcworkspace/contents.xcworkspacedata
+ios/newProject.xcworkspace/
 package-lock.json

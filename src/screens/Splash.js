@@ -8,22 +8,26 @@ import {
   StatusBar,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
+import constants from "../constants/const";
+import AsyncStorage from "@react-native-community/async-storage";
 
 const Splash = (props) => {
-  console.log("app");
+  getData = async () => {
+    const checkLogin = await AsyncStorage.getItem(constants.GET_LOGIN);
+    if (checkLogin) {
+      props.navigation.navigate("BottomTabNavigator");
+    } else {
+      props.navigation.navigate("LoginScreen");
+    }
+  };
   return (
     <SafeAreaView style={styles.screen}>
       <Animatable.View animation="bounceIn" style={styles.header}>
         <Text style={styles.headerText}> React Native</Text>
-        <Text style={styles.headerTextSmall}>Learn once, write anywhere.
-
-</Text>
+        <Text style={styles.headerTextSmall}>Learn once, write anywhere.</Text>
       </Animatable.View>
       <Animatable.View animation="bounceInUp" margin={20}>
-        <TouchableOpacity
-          onPress={() => props.navigation.navigate("LoginScreen")}
-          style={styles.footerButton}
-        >
+        <TouchableOpacity onPress={() => getData()} style={styles.footerButton}>
           <Text color="#fff" style={styles.button}>
             Get Start
           </Text>
@@ -41,7 +45,7 @@ const styles = StyleSheet.create({
   headerText: {
     padding: 10,
     fontSize: 40,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     justifyContent: "flex-start",
     alignItems: "flex-start",
     marginTop: 20,
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
   headerTextSmall: {
     padding: 10,
     fontSize: 20,
-    marginStart:10,
+    marginStart: 10,
     justifyContent: "flex-start",
     alignItems: "flex-start",
   },
@@ -67,15 +71,15 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: "100%",
     height: 50,
-    margin:20,
+    margin: 20,
     backgroundColor: "#000",
     alignSelf: "center",
-    justifyContent:"center"
+    justifyContent: "center",
   },
   button: {
     color: "#fff",
     justifyContent: "center",
-    margin:10,
+    margin: 10,
     alignSelf: "center",
     fontSize: 20,
   },

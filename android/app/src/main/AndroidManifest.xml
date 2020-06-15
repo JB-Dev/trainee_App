@@ -2,6 +2,9 @@
   package="com.newproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <!-- API lvl 28+ (Pie and above) -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
     <application
       android:name=".MainApplication"

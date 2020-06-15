@@ -1,5 +1,5 @@
-import { createStackNavigator, HeaderTitle } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import ListData from "../screens/ListData";
 import Login from "../screens/Login";
@@ -46,6 +46,7 @@ const BottomTabNavigator = createBottomTabNavigator(
   routeConfigs,
   bottomTabConfig
 );
+
 const Navigator = createStackNavigator(
   {
     SplashScreen: {
